@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch> 
+
+ <!-- World File -->
+  <arg name="world_file" default="$(find swarm)/worlds/swarm.world"/>
+
+  <!-- Launch Gazebo World -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="use_sim_time" value="true"/>
+    <arg name="debug" value="false"/>
+    <arg name="gui" value="true" />
+    <arg name="world_name" value="$(arg world_file)"/>
+  </include>
+
+  <param name="uav0_ver" value="false" />
+  <param name="uav1_ver" value="false" />
+  <param name="uav2_ver" value="false" />
+  <param name="uav3_ver" value="false" />  
+
+      <group ns="uav0">
+
+        <!-- MAVROS and vehicle configs -->
+        <arg name="ID" value="1"/>
+        <arg name="fcu_url" default="udp://127.0.0.1:14551@14555"/>
+        <!-- MAVROS -->
+        <include file="$(find mavros)/launch/apm.launch">
+            <arg name="fcu_url" value="$(arg fcu_url)"/>
+            <arg name="gcs_url" value=""/>
+            <arg name="tgt_system" value="$(arg ID)"/>
+            <arg name="tgt_component" value="1"/>
+        </include>
+     </group>
+
+      <group ns="uav1">
+
+        <!-- MAVROS and vehicle configs -->
+        <arg name="ID" value="1"/>
+        <arg name="fcu_url" default="udp://127.0.0.1:14561@14565"/>
+        <!-- MAVROS -->
+        <include file="$(find mavros)/launch/apm.launch">
+            <arg name="fcu_url" value="$(arg fcu_url)"/>
+            <arg name="gcs_url" value=""/>
+            <arg name="tgt_system" value="$(arg ID)"/>
+            <arg name="tgt_component" value="1"/>
+        </include>
+     </group>
+
+      <group ns="uav2">
+
+        <!-- MAVROS and vehicle configs -->
+        <arg name="ID" value="1"/>
+        <arg name="fcu_url" default="udp://127.0.0.1:14571@14575"/>
+        <!-- MAVROS -->
+        <include file="$(find mavros)/launch/apm.launch">
+            <arg name="fcu_url" value="$(arg fcu_url)"/>
+            <arg name="gcs_url" value=""/>
+            <arg name="tgt_system" value="$(arg ID)"/>
+            <arg name="tgt_component" value="1"/>
+        </include>
+     </group>
+
+      <group ns="uav3">
+
+        <!-- MAVROS and vehicle configs -->
+        <arg name="ID" value="1"/>
+        <arg name="fcu_url" default="udp://127.0.0.1:14581@14585"/>
+        <!-- MAVROS -->
+        <include file="$(find mavros)/launch/apm.launch">
+            <arg name="fcu_url" value="$(arg fcu_url)"/>
+            <arg name="gcs_url" value=""/>
+            <arg name="tgt_system" value="$(arg ID)"/>
+            <arg name="tgt_component" value="1"/>
+        </include>
+     </group>
+
+
+</launch>
+

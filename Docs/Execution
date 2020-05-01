@@ -1,0 +1,37 @@
+
+This describes the execution process. It is assumed that all dependencies are installed and the package has been succefully built. Refer to package.xml for the list of dependencies. 
+
+1. Launch 4 SITL Instances.
+
+	sim_vehicle.py -v ArduCopter -f gazebo-iris -I 0
+	sim_vehicle.py -v ArduCopter -f gazebo-iris -I 1
+	sim_vehicle.py -v ArduCopter -f gazebo-iris -I 2
+	sim_vehicle.py -v ArduCopter -f gazebo-iris -I 3
+
+2. Launch the gazebo world along with the 4 ardupilot plugin enabled UAV's
+ 	
+	roslaunch swarm world.launch
+
+The simulation and visualisation environment along with the parameters for NPNT compliance are initiated.
+
+3. Start the multi UAV mission
+
+	roslaunch swarm mission.launch
+
+The 4 ROS nodes corresponding to each UAV has started its execution. The takeoff will not occur unless necessary permission is granted. 
+
+4. Granting permission for takeoff
+
+	rosrun swarm permission
+
+Enter the UAV ID as 1,2,3 or 4 to grant permission to the 1st, 2nd, 3rd or 4th UAV. 
+
+5. Viewing Telemetry Data
+
+	rosrun swarm telemetry
+
+This displays the (x,y,z) coordinates of each UAV. Here I have run the entire operation on local coordinates. Global coordinate system is not used here.
+
+Note: The Multi UAV mission with delay can be started using the permission.sh script file. It starts each node with an interval of 10sec. This does not guarentee that the takeoff will occur exactly 10sec apart, but in a perfect system it should :D This does not request takeoff permission and is assumed to be granted all together when mission is called. There is room for improvement using the ros::time parameter to time the takeoff accordingly.
+
+

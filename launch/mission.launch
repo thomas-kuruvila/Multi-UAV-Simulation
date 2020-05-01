@@ -1,0 +1,9 @@
+
+<launch> 
+
+<node name="uav0" pkg="swarm" type="uav0" respawn="true"/>
+<node name="uav1" pkg="swarm" type="uav1" respawn="true"/>
+<node name="uav2" pkg="swarm" type="uav2" respawn="true"/>
+<node name="uav3" pkg="swarm" type="uav3" respawn="true"/>
+
+</launch>
